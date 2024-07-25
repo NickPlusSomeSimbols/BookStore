@@ -1,7 +1,11 @@
+using BookStore.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCustomServices();
 
 var app = builder.Build();
 

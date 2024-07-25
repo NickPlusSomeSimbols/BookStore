@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.BLL.Services;
-internal class BookStoreService
+namespace BookStore.DTO.StoreDto;
+public class StoreDto
 {
 }
