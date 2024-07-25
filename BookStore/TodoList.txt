@@ -1,0 +1,4 @@
+﻿Storage management mechanism:
+
+When the amount of one of BookTypes reaches 0, keep it untill it's not deleted forcefully 
+to help keep track of frequently supplied books
