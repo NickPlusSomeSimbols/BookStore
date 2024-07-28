@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.DTO.StoreDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace BookStore.BLL.Services.Store;
 public interface IStoreService
 {
     public Task<IAsyncResult> GetAll();
-    public Task<IAsyncResult> GetById();
-    public Task<IAsyncResult> Add();
-    public Task<IAsyncResult> Update();
-    public Task<IAsyncResult> Delete();
+    public Task<IAsyncResult> GetById(long id);
+    public Task<IAsyncResult> Add(AddStoreDto dto);
+    public Task<IAsyncResult> Update(UpdateStoreDto dto);
+    public Task<IAsyncResult> Delete(long id);
 }

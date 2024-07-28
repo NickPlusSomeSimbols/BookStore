@@ -1,20 +1,28 @@
 using BookStore.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCustomServices();
+builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCustomServices();
+var configuration = builder.Configuration.AddJsonFile("appsetting.json");
+/*var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json",);*/
+
+builder.Services.AddDbContextFactory<BookStoreDbContext>(
+        options =>
+            options.UseNpgsql(builder.Configuration["ConnectionStrings:Default"]));
 
 var app = builder.Build();
 
 app.UseRouting();
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.UseEndpoints(endpoint =>
+{
+    endpoint.MapControllers();
+});
 
 if (app.Environment.IsDevelopment())
 {
@@ -25,5 +33,6 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = "";
     });
 }
+
 
 app.Run();
