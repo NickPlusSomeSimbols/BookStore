@@ -7,14 +7,10 @@ builder.Services.AddCustomServices();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 
-var configuration = builder.Configuration.AddJsonFile("appsetting.json");
-/*var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json",);*/
+var config = builder.Configuration;
 
-builder.Services.AddDbContextFactory<BookStoreDbContext>(
-        options =>
-            options.UseNpgsql(builder.Configuration["ConnectionStrings:Default"]));
+builder.Services.AddDbContext<BookStoreDbContext>(
+            options => options.UseNpgsql(config.GetConnectionString("Default")));
 
 var app = builder.Build();
 
@@ -26,11 +22,15 @@ app.UseEndpoints(endpoint =>
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(options =>
+    {
+        options.SerializeAsV2 = true;
+    });
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1.0");
         options.RoutePrefix = "";
+
     });
 }
 
