@@ -1,6 +1,7 @@
 ﻿using BookStore.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 public class BookStoreDbContext : DbContext
 {
@@ -17,5 +18,13 @@ public class BookStoreDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Store>()
+            .HasOne(e => e.Storage)
+            .WithOne(e => e.Store)
+            .HasForeignKey<Storage>(e => e.StoreId);
     }
 }

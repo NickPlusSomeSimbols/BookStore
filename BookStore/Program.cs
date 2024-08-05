@@ -9,8 +9,10 @@ builder.Services.AddSwaggerGen();
 
 var config = builder.Configuration;
 
-builder.Services.AddDbContext<BookStoreDbContext>(
-            options => options.UseNpgsql(config.GetConnectionString("Default")));
+builder.Services.AddDbContext<BookStoreDbContext>(options =>
+{
+    options.UseNpgsql(config.GetConnectionString("Default"));
+});
 
 var app = builder.Build();
 
