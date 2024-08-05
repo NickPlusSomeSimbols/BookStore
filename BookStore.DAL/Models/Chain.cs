@@ -8,5 +8,6 @@ namespace BookStore.DAL.Models;
 public class Chain : BaseEntity
 {
     public string Name {  get; set; }  
+
     public ICollection<Store> Stores{ get; set; }
 }

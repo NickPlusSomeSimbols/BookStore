@@ -27,4 +27,11 @@ public class BookStoreDbContext : DbContext
             .WithOne(e => e.Store)
             .HasForeignKey<Storage>(e => e.StoreId);
     }
+
+    public sealed override async Task<int> SaveChangesAsync(CancellationToken token)
+    {
+        // Update dates
+        await SaveChangesAsync(token);
+        return 1;
+    }
 }
