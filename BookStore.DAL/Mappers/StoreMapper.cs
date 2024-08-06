@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.DTO.StoreDto;
-public class StoreDto
+namespace BookStore.DAL.Mappers;
+public class StoreMapper
 {
-    public string? Address { get; set; }
 }

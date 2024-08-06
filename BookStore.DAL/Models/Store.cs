@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BookStore.DAL.Models;
 public class Store : BaseEntity
 {
-    public string Address { get; set; }
+    public string? Address { get; set; }
 
     public Chain Chain { get; set; }
     public long ChainId { get; set; }

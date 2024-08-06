@@ -1,4 +1,6 @@
-﻿using BookStore.DTO.StoreDto;
+﻿using Ardalis.Result;
+using AutoMapper;
+using BookStore.DTO.StoreDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,20 @@ namespace BookStore.BLL.Services.Store;
 public class StoreService : IStoreService
 {
     private BookStoreDbContext _db;
+    private readonly IMapper _mapper;
 
-    public StoreService(BookStoreDbContext db)
+    public StoreService(BookStoreDbContext db, IMapper mapper)
     {
         _db = db;
+        _mapper = mapper;
     }
 
-    public Task<IAsyncResult> GetAll()
+    public Task<Result<ICollection<StoreDto>>> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IAsyncResult> GetById(long id)
+    public Task<Result<StoreDto>> GetById(long id)
     {
         var store = _db.Stores.FirstOrDefault(s => s.Id == id);
 
@@ -28,16 +32,23 @@ public class StoreService : IStoreService
         {
             throw new Exception("null"); // TODO:Exceptions
         }
+
+        StoreDto storeDto = new()
+        {
+            Address = store.Address,
+        };
+
+        return ;    
     }
-    public Task<IAsyncResult> Add(AddStoreDto dto)
+    public Task<Result<StoreDto>> Add(AddStoreDto dto)
     {
         throw new NotImplementedException();
     }
-    public Task<IAsyncResult> Update(UpdateStoreDto dto)
+    public Task<Result<StoreDto>> Update(UpdateStoreDto dto)
     {
         throw new NotImplementedException();
     }
-    public Task<IAsyncResult> Delete(long id)
+    public Task<Result<StoreDto>> Delete(long id)
     {
         throw new NotImplementedException();
     }

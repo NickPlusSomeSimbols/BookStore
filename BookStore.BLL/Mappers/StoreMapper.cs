@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.DTO.Store;
-public class StoreDeleteDto
+namespace BookStore.BLL.Mappers;
+public class StoreMapper
 {
+    
 }

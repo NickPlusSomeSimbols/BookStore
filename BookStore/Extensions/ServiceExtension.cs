@@ -7,6 +7,8 @@ public static class ServiceExtension
 {
     public static void AddCustomServices(this IServiceCollection services)
     {
+        services.AddAutoMapper(typeof(MapperExtension));
+        
         services.AddScoped<IStoreService, StoreService>();
     }
 }
