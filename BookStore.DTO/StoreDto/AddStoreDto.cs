@@ -8,4 +8,5 @@ namespace BookStore.DTO.StoreDto;
 public class AddStoreDto
 {
     public string? Address { get; set; }
+    public long ChainId { get; set; }
 }

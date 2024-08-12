@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BookStore.DTO.StoreDto;
-public class UpdateStoreDto
+public class StoreDto 
 {
     public string? Address { get; set; }
 }

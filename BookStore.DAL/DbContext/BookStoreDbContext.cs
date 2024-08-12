@@ -25,13 +25,13 @@ public class BookStoreDbContext : DbContext
         modelBuilder.Entity<Store>()
             .HasOne(e => e.Storage)
             .WithOne(e => e.Store)
-            .HasForeignKey<Storage>(e => e.StoreId);
+            .HasForeignKey<Store>(e => e.StorageId);
     }
 
-    public sealed override async Task<int> SaveChangesAsync(CancellationToken token)
+    public sealed override int SaveChanges()
     {
         // Update dates
-        await SaveChangesAsync(token);
+        SaveChanges();
         return 1;
     }
 }

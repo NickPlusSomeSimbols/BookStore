@@ -1,4 +1,6 @@
-﻿using BookStore.BLL.Services.Store;
+﻿using Ardalis.Result;
+using BookStore.BLL.Services.StoreService;
+using BookStore.DAL.Models;
 using BookStore.DTO.StoreDto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,19 +15,19 @@ public class StoreController : BaseController
     }
 
     [HttpPost("get-by-id")]
-    public async Task GetById(long id)
+    public async Task<Result<Store>> GetById(long id)
     {
-        await _storeService.GetById(id);
+        return await _storeService.GetById(id);
     }
     [HttpPost("create")]
-    public async Task Add(AddStoreDto dto)
+    public async Task<Result<Store>> Add(AddStoreDto dto)
     {
-        await _storeService.Add(dto);
+        return await _storeService.Add(dto);
     }
     [HttpPost("update")]
-    public async Task Update(UpdateStoreDto dto)
+    public async Task<Result<Store>> Update(UpdateStoreDto dto)
     {
-        await _storeService.Update(dto);
+        return await _storeService.Update(dto);
     }
     [HttpPost("delete")]
     public async Task Delete(long id)
